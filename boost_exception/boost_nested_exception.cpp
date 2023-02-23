@@ -9,12 +9,14 @@
 #include <boost/exception/errinfo_errno.hpp>
 #include <boost/exception/errinfo_nested_exception.hpp>
 
+/*Macro that is equivilant of std::throw_with_nested */
 #define HZ_BOOST_THROW_WITH_NESTED(e) \
   BOOST_THROW_EXCEPTION(boost::enable_current_exception(boost::enable_error_info(e)) \
      << boost::errinfo_nested_exception(boost::current_exception())) 
 
 void print_exception(const boost::exception& ex, int level =  0)
 {
+   /*Method to get the output of nested exceptions, similar to rethrow_if_nested*/
     std::cout << boost::diagnostic_information(ex) << std::endl;
 }
 
